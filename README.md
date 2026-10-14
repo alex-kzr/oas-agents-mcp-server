@@ -1,11 +1,9 @@
-# agents-mcp-server
+# OpenAI Agents MCP Server
 
-Synthetic local MCP tools and standards-based transport fixture.
+Independent synthetic fixture using official MCP Python SDK 2.3.0 (MCPServer public API), locked for Python 3.12. Tools: bounded echo, allowlisted sample.discount lookup and controlled diagnostic failure. No real accounts, filesystem, shell or network tool access.
 
-Status: independent Git repository scaffold only. No runnable application, dependency lock or completed test exists. Proposed GitHub name: `openai-agents-mcp-server`; no remote configured or assumed.
+WSL2: `uv sync --locked`; `uv run --offline --locked python -m unittest discover -s tests -v`.
 
-Ownership and future interfaces: see the umbrella docs/component-contracts.md and SPEC §§3,5,10. Those are documentation paths in the parent checkout, not imports or independently packaged dependencies. This repository must gain its own contracts/configuration/test instructions before runtime implementation.
+Serve stdio with `uv run --offline --locked python -m agents_mcp_server`. Local Streamable HTTP entry point: `uv run --offline --locked python -m agents_mcp_server --transport streamable-http --port 8766`, binding only 127.0.0.1 with body/session limits. Stdio discovery and native Agent tool calls have actual SDK integration tests in the runtime repository; Streamable HTTP entry point remains unverified until its separate integration test.
 
-Python import package target: `agents_mcp_server`. Python 3.11+ pending the verified SDK pin; uv pyproject.toml and uv.lock will be created after dependency verification. Component tests will use unittest.
-
-Current inspection: `git status --short` and `git log -1`. Test command is not available yet; empty test directories do not establish passing tests. Future implementation keeps code/tests and version history here. No model/API calls or Docker launch in this milestone.
+Registry extension is build_server() plus independent tool contracts. This official protocol server is permitted integration glue, not another agent orchestration framework. No remote URL is invented or pushed.
